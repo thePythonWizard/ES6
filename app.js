@@ -258,3 +258,155 @@ const newNumbers = numbers.filter(number => number>=70);
 
 console.log(newNumbers);
 */
+
+/**************************************************************************************
+ * 12. Template String Introduction
+ */
+/*
+const name = 'siddharth';
+const age = 21;
+const sentence = `My name is ${name} and my age is : ${age}`;
+
+console.log(sentence);
+*/
+
+/***************************************************************************************
+ *13. Creating html fragments using template litrels
+ */
+/* part 1
+
+const person = {
+    name: 'Wes',
+    job: 'Web Developer', 
+    city: 'Khairthal',
+    bio: 'Sid is really a cool web developer and love to teach others.'
+}
+
+const markup = `
+    <div class="person">
+        <h2>${person.name}
+            <span>: ${person.job}</span>
+        </h2>
+        <p class="location">${person.city}</p>
+        <p class="bio">${person.bio}</p>
+    </div>
+`;
+
+console.log(markup);
+document.body.innerHTML = markup;
+*/
+
+
+/*Part 2
+const dogs = [
+    { name: 'Snikers', age: 2},
+    { name: 'Hugo', age: 8 },
+    { name: 'Sunny', age: 1 }
+];
+
+const markup = `
+    <ul class="dogs">
+        ${dogs.map((dog) => `<li>My dog name: ${dog.name} and his age: ${dog.age * 7}</li>`).join('')};
+    </ul>
+`;
+console.log(markup);
+document.body.innerHTML = markup;
+*/
+/* Part 3
+const song = {
+    name: 'Dying to live',
+    artist: 'Tupac', 
+    featuring: 'Biggie Smalls'
+};
+
+const markup = `
+    <div class="song">
+        <p>
+            ${song.name} : by ${song.artist}
+            ${song.featuring ? `(Featuring ${song.featuring})` : ''}
+        </p>
+    </div>
+`;
+console.log(markup);
+document.body.innerHTML = markup;
+*/
+
+/* Part 4
+const beer = {
+    name: 'Belgian Wit', 
+    brewery: 'Steam Whistle Brewery',
+    keywords: ['pale', 'cloudy', 'spiced', 'crisp']
+};
+
+function renderKeywords(keywords) {
+    return `
+        <ul>
+            ${keywords.map(keyword => `<li>${keyword}</li>`).join('')}
+        </uL>
+    `;
+}
+
+const markup = `
+    <div class="beer">
+        <h2>${beer.name}</h2>
+        <p class="brewery">${beer.brewery}</p>
+        ${renderKeywords(beer.keywords)}
+    </div>
+`;
+document.body.innerHTML = markup;
+*/
+
+/*************************************************************************************************
+ * 14. Tagged template literals
+ */
+/*
+function highlight(strings, ...values) {
+    // debugger;
+    let str = '';
+    strings.forEach((string, i) => {
+        // str += string + (values[i] || '');
+        str += `${string} <span style="background: yellow" contenteditable class="h1">${values[i] || ''}</span>`;
+    });
+    return str;
+}
+
+const name = 'Snikers';
+const age = 100;
+const sentence = highlight`My dog's name is ${name} and he is ${age} years old.`;
+document.body.innerHTML = sentence;
+console.log(sentence);
+*/
+
+/******************************************************************************************
+ * 15. Tagged Templates Exercise
+ */
+/*
+const dict = {
+    HTML: 'Hyper Text Markup Language',
+    CSS: 'Cascading Style Sheet',
+    JS: 'JavaScript'
+};
+
+const first = 'Siddharth';
+const last = 'Gupta';
+
+function addAbrreviation(strings, ...values) {
+    const abbreviated = values.map(value => {
+        if(dict[value]) {
+            return `<abbr title="${dict[value]}">${value}</abbr>`;
+        }
+        return value;
+    });
+    // console.log(abbreviated);
+    return strings.reduce((sentence, string, i) => {
+        return `${sentence}${string}${abbreviated[i] || ''}`
+    }, '')
+}
+
+const sentence = addAbrreviation`Hello my name is ${first} ${last} and i love to code ${'HTML'}, ${'CSS'}, ${'JS'}`;
+
+const bio = document.querySelector('.bio');
+const p = document.createElement('p');
+p.innerHTML = sentence;
+bio.appendChild(p);
+*/
